@@ -14,6 +14,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/', function () {
+    return redirect('/instrutores');
+});
 Route::resource("/instrutores", InstrutoresController::class);
 
 Auth::routes();

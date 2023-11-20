@@ -10,9 +10,14 @@ class InstrutoresController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view("instrutores.index");
+        $dados = Instrutores::query()->orderBy('created_at')->get();
+        $message = $request->session()->get('success.message');
+        return view("instrutores.index")
+            ->with('message', $message)
+            ->with('dados', $dados)
+        ;
     }
 
     /**
@@ -28,7 +33,9 @@ class InstrutoresController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $dados = Instrutores::create($request->all());
+        $request->session()->flash('success.message', "Dados cadastrados com sucesso!");
+        return to_route('instrutores.index');
     }
 
     /**

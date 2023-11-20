@@ -1,9 +1,36 @@
 @extends('components.main')
 
-@section('form')
+@section('content')
 
-<form action="">
-    <input type="text">Teste
-</form>
+@isset($message)
+<div class="alert alert-success">
+    {{ $message }}
+</div>
+@endisset
 
+@isset($dados)
+<div class="accordion accordion-flush mt-3" id="accordionFlush">
+    @foreach($dados as $dado)
+    <div class="accordion-item">
+      <h2 class="accordion-header">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#id{{$dado->idinstrutores}}" aria-expanded="false" aria-controls="flush-collapseOne">
+          {{ date('d/m/Y H:i', strtotime($dado->created_at)) }}
+        </button>
+      </h2>
+      <div id="id{{ $dado->idinstrutores }}" class="accordion-collapse collapse" data-bs-parent="#accordionFlush">
+        <div class="accordion-body">
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item"><b>Instrutor:</b> {{ $dado->usuario }}</li>
+                <li class="list-group-item"><b>Status:</b> {{ $dado->status }}</li>
+                <li class="list-group-item"><b>Motorista:</b> {{ $dado->motorista }}</li>
+                <li class="list-group-item"><b>Carro:</b> {{ $dado->carro }}</li>
+                <li class="list-group-item"><b>Linha:</b> {{ $dado->linha }}</li>
+                <li class="list-group-item"><b>Obs:</b> {{ $dado->observacoes }}</li>
+              </ul>
+        </div>
+      </div>
+    </div>
+  @endforeach
+</div>
+@endisset
 @endsection
