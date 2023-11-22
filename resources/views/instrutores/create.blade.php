@@ -4,6 +4,10 @@
 <form class="p-3" method="post" action="{{ route('instrutores.store') }}">
     @csrf
     <div class="mb-3 input-group-lg">
+        <label for="status" class="form-label">Data</label>
+        <input type="date" class="form-control" id="data" name="data_instrucao" required>        
+    </div>
+    <div class="mb-3 input-group-lg">
         <label for="status" class="form-label">Status</label>
         <input type="text" class="form-control" id="status" name="status" required>        
     </div>

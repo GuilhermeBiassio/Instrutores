@@ -20,6 +20,7 @@ return new class extends Migration {
             $table->string('linha');
             $table->string('observacoes');
             $table->integer('usuario');
+            $table->date('data_instrucao');
             $table->timestamps();
         });
     }

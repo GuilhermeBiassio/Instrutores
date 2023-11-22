@@ -8,5 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class Instrutores extends Model
 {
     use HasFactory;
-    protected $fillable = ['status', 'motorista', 'carro', 'linha', 'inicio_percurso', 'final_percurso', 'observacoes'];
+    protected $fillable = ['status', 'motorista', 'carro', 'linha', 'inicio_percurso', 'final_percurso', 'observacoes', 'data_instrucao'];
 }

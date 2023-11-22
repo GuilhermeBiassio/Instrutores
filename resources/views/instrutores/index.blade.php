@@ -2,6 +2,22 @@
 
 @section('content')
 
+<form action="{{ route('instrutores.index') }}" class="border-bottom" method="get">
+  <div class="row">
+    <div class="col">
+      <label for="ini">Data início</label>
+      <input type="date" id="ini" class="form-control form-control-lg" placeholder="Data início" aria-label="First name">
+    </div>
+    <div class="col">
+      <label for="end">Data final</label>
+      <input type="date" id="end" class="form-control form-control-lg" placeholder="Data final" aria-label="Last name">
+    </div>
+  </div>
+  <div class="col-12 m-2">
+    <button type="submit" class="btn btn-primary btn-lg">Filtrar</button>
+  </div>
+</form>
+
 @isset($message)
 <div class="alert alert-success">
     {{ $message }}
@@ -14,18 +30,19 @@
     <div class="accordion-item">
       <h2 class="accordion-header">
         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#id{{$dado->idinstrutores}}" aria-expanded="false" aria-controls="flush-collapseOne">
-          {{ date('d/m/Y H:i', strtotime($dado->created_at)) }}
+          Data da instrução:<b>{{ date('d/m/Y', strtotime($dado->data_instrucao)) }}</b>
         </button>
       </h2>
       <div id="id{{ $dado->idinstrutores }}" class="accordion-collapse collapse" data-bs-parent="#accordionFlush">
         <div class="accordion-body">
             <ul class="list-group list-group-flush">
+                <li class="list-group-item"><b>Data de cadastro:</b> {{ date('d/m/Y H:i', strtotime($dado->created_at)) }}</li>
                 <li class="list-group-item"><b>Instrutor:</b> {{ $dado->usuario }}</li>
                 <li class="list-group-item"><b>Status:</b> {{ $dado->status }}</li>
                 <li class="list-group-item"><b>Motorista:</b> {{ $dado->motorista }}</li>
                 <li class="list-group-item"><b>Carro:</b> {{ $dado->carro }}</li>
                 <li class="list-group-item"><b>Linha:</b> {{ $dado->linha }}</li>
-                <li class="list-group-item"><b>Obs:</b> {{ $dado->observacoes }}</li>
+                <li class="list-group-item"><b>Obs:</b> {{ $dado->observacoes }}</li>                
               </ul>
         </div>
       </div>
