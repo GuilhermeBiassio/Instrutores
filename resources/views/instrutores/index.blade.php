@@ -17,7 +17,7 @@
       <h2 class="accordion-header">
         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#id{{$dado->idinstrutores}}" aria-expanded="false" aria-controls="flush-collapseOne">
           Data da instrução:<b>{{ date('d/m/Y', strtotime($dado->data_instrucao)) }}</b>
-        </button>
+        </button>        
       </h2>
       <div id="id{{ $dado->idinstrutores }}" class="accordion-collapse collapse" data-bs-parent="#accordionFlush">
         <div class="accordion-body">
@@ -30,6 +30,9 @@
                 <li class="list-group-item"><b>Linha:</b> {{ $dado->linha }}</li>
                 <li class="list-group-item"><b>Obs:</b> {{ $dado->observacoes }}</li>                
               </ul>
+              <div class="d-flex justify-content-end">
+                <a href="{{ route('instrutores.edit', $dado->idinstrutores) }}" class="btn btn-primary btn-lg align-item">Editar</a>
+              </div>
         </div>
       </div>
     </div>

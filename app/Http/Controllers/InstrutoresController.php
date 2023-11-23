@@ -35,8 +35,7 @@ class InstrutoresController extends Controller
     public function store(Request $request)
     {
         $dados = Instrutores::create($request->all());
-        $request->session()->flash('success.message', "Dados cadastrados com sucesso!");
-        return to_route('instrutores.index');
+        return to_route('instrutores.index')->with('success.message', "Dados cadastrados com sucesso!");
     }
 
     /**
@@ -44,7 +43,7 @@ class InstrutoresController extends Controller
      */
     public function show(Instrutores $instrutores, Request $request)
     {
-
+        
     }
 
     /**
@@ -52,7 +51,7 @@ class InstrutoresController extends Controller
      */
     public function edit(Instrutores $instrutores)
     {
-        //
+        return view('instrutores.edit')->with('instrutor', $instrutores);
     }
 
     /**
