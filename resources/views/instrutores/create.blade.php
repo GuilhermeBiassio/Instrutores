@@ -1,6 +1,7 @@
 @extends('components.main')
 
 @section('content')
+<h3>Cadastrar atividade</h3>
 <form class="p-3" method="post" action="{{ route('instrutores.store') }}">
     @csrf
     <div class="mb-3 input-group-lg">

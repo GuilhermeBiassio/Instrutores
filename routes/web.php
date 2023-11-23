@@ -15,9 +15,18 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return redirect('/instrutores');
+    return to_route('instrutores.create');
 });
-Route::resource("/instrutores", InstrutoresController::class);
+
+//Route::resource("/instrutores", InstrutoresController::class);
+Route::controller(InstrutoresController::class)->group(function () {
+    Route::prefix("instrutores")->group(function () {
+        Route::get("/", 'index')->name('instrutores.index');
+        Route::get("/create", "create")->name('instrutores.create');
+        Route::post("/", "store")->name('instrutores.store');
+        Route::get("/search", "search")->name('instrutores.search');
+    });
+});
 
 Auth::routes();
 

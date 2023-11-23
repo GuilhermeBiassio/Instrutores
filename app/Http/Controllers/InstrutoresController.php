@@ -12,7 +12,8 @@ class InstrutoresController extends Controller
      */
     public function index(Request $request)
     {
-        $dados = Instrutores::query()->orderBy('created_at')->get();
+        //dd($request);
+        $dados = Instrutores::query()->orderBy('created_at', 'desc')->get();
         $message = $request->session()->get('success.message');
         return view("instrutores.index")
             ->with('message', $message)
@@ -41,9 +42,9 @@ class InstrutoresController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Instrutores $instrutores)
+    public function show(Instrutores $instrutores, Request $request)
     {
-        //
+
     }
 
     /**
@@ -68,5 +69,10 @@ class InstrutoresController extends Controller
     public function destroy(Instrutores $instrutores)
     {
         //
+    }
+
+    public function search()
+    {
+        return view('instrutores.search');
     }
 }

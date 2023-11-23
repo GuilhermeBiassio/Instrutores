@@ -12,7 +12,7 @@
 
     <nav class="navbar bg-body-tertiary">
         <div class="container-fluid">
-            <h3 class="navbar-brend"><a class="link-offset-2 link-underline link-underline-opacity-0" href="{{ route('instrutores.index') }}">Instrutores</a></h3>
+            <h3 class="navbar-brend"><a class="link-offset-2 link-underline link-underline-opacity-0" href="/">Instrutores</a></h3>
             <button class="btn btn-primary btn-lg" type="button" data-bs-toggle="offcanvas" data-bs-target="#staticBackdrop"
                 aria-controls="staticBackdrop">
                 <i class="bi bi-list"></i>
@@ -30,6 +30,9 @@
             <ul class="nav flex-column">
                 <li class="nav-item">
                   <a class="nav-link active" href="{{ route('instrutores.create') }}">Diário de Instrução</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="{{ route('instrutores.search') }}">Filtrar Período</a>
                 </li>
               </ul>
         </div>
