@@ -1,0 +1,1 @@
+@extends('components.instructors.form')

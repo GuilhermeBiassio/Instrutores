@@ -32,7 +32,7 @@
                   <a class="nav-link active" href="{{ route('instrutores.create') }}">Diário de Instrução</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" href="{{ route('instrutores.search') }}">Filtrar Período</a>
+                    <a class="nav-link active" href="#">Filtrar Período</a>
                 </li>
               </ul>
         </div>

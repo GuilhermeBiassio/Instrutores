@@ -26,7 +26,7 @@ class InstrutoresController extends Controller
      */
     public function create()
     {
-        return view("instrutores.create");
+        return view("instrutores.create")->with('action', route('instrutores.store'));
     }
 
     /**
@@ -51,7 +51,9 @@ class InstrutoresController extends Controller
      */
     public function edit(Instrutores $instrutores)
     {
-        return view('instrutores.edit')->with('instrutor', $instrutores);
+        dd($instrutor);
+        return view('instrutores.edit')
+        ->with('action', route('instrutores.update', $instrutores));
     }
 
     /**

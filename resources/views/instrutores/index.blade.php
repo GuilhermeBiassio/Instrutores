@@ -2,15 +2,15 @@
 
 @section('content')
 
-<h3>Lista de cadastros</h3>
 
 @isset($message)
 <div class="alert alert-success">
-    {{ $message }}
+  {{ $message }}
 </div>
 @endisset
 
 @isset($dados)
+<h3>Lista de cadastros</h3>
 <div class="accordion accordion-flush mt-3" id="accordionFlush">
     @foreach($dados as $dado)
     <div class="accordion-item">
