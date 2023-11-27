@@ -26,6 +26,8 @@
                 <li class="list-group-item"><b>Instrutor:</b> {{ $dado->usuario }}</li>
                 <li class="list-group-item"><b>Status:</b> {{ $dado->status }}</li>
                 <li class="list-group-item"><b>Motorista:</b> {{ $dado->motorista }}</li>
+                <li class="list-group-item"><b>Início Percurso:</b> {{ $dado->inicio_percurso }}</li>
+                <li class="list-group-item"><b>Final Percurso:</b> {{ $dado->final_percurso }}</li>
                 <li class="list-group-item"><b>Carro:</b> {{ $dado->carro }}</li>
                 <li class="list-group-item"><b>Linha:</b> {{ $dado->linha }}</li>
                 <li class="list-group-item"><b>Obs:</b> {{ $dado->observacoes }}</li>                

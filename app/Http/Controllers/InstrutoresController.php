@@ -49,13 +49,12 @@ class InstrutoresController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(int $instrutor)
+    public function edit(Instrutores $instrutores)
     {
-        $dados = Instrutores::find($instrutor);
-        //dd($dados);
+        // dd($instrutores->id);
         return view('instrutores.edit')
-            ->with('action', route('instrutores.update', $instrutor))
-            ->with('dados', $dados);
+            ->with('action', route('instrutores.update', $instrutores->id))
+            ->with('dados', $instrutores);
     }
 
     /**
@@ -63,7 +62,13 @@ class InstrutoresController extends Controller
      */
     public function update(Request $request, Instrutores $instrutores)
     {
-        //
+        // dd($instrutores->id);
+        $instrutores = new Instrutores();
+        $instrutores->find(13);
+        // $instrutores->fill($request->all());
+        dd($instrutores);
+        $instrutores->update();
+        return to_route('instrutores.index')->with('success.message', 'Dados atualizados com sucesso!');
     }
 
     /**

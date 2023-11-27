@@ -23,7 +23,7 @@ Route::controller(InstrutoresController::class)->group(function () {
         Route::get("/", 'index')->name('instrutores.index');
         Route::get("/create", "create")->name('instrutores.create');
         Route::post("/", "store")->name('instrutores.store');
-        Route::get("/{instrutor}/edit", "edit")->name('instrutores.edit');
+        Route::get("/{instrutores}/edit", "edit")->name('instrutores.edit');
         Route::get("/search", "search")->name('instrutores.search');
         Route::put("/{instrutor}", "update")->name('instrutores.update');
     });
