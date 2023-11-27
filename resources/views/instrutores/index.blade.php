@@ -15,11 +15,11 @@
     @foreach($dados as $dado)
     <div class="accordion-item">
       <h2 class="accordion-header">
-        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#id{{$dado->idinstrutores}}" aria-expanded="false" aria-controls="flush-collapseOne">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#id{{$dado->id}}" aria-expanded="false" aria-controls="flush-collapseOne">
           Data da instrução:<b>{{ date('d/m/Y', strtotime($dado->data_instrucao)) }}</b>
         </button>        
       </h2>
-      <div id="id{{ $dado->idinstrutores }}" class="accordion-collapse collapse" data-bs-parent="#accordionFlush">
+      <div id="id{{ $dado->id }}" class="accordion-collapse collapse" data-bs-parent="#accordionFlush">
         <div class="accordion-body">
             <ul class="list-group list-group-flush">
                 <li class="list-group-item"><b>Data de cadastro:</b> {{ date('d/m/Y H:i', strtotime($dado->created_at)) }}</li>
@@ -31,7 +31,7 @@
                 <li class="list-group-item"><b>Obs:</b> {{ $dado->observacoes }}</li>                
               </ul>
               <div class="d-flex justify-content-end">
-                <a href="{{ route('instrutores.edit', $dado->idinstrutores) }}" class="btn btn-primary btn-lg align-item">Editar</a>
+                <a href="{{ route('instrutores.edit', $dado->id) }}" class="btn btn-primary btn-lg align-item">Editar</a>
               </div>
         </div>
       </div>

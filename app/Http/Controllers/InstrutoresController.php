@@ -43,17 +43,19 @@ class InstrutoresController extends Controller
      */
     public function show(Instrutores $instrutores, Request $request)
     {
-        
+
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Instrutores $instrutores)
+    public function edit(int $instrutor)
     {
-        dd($instrutor);
+        $dados = Instrutores::find($instrutor);
+        //dd($dados);
         return view('instrutores.edit')
-        ->with('action', route('instrutores.update', $instrutores));
+            ->with('action', route('instrutores.update', $instrutor))
+            ->with('dados', $dados);
     }
 
     /**

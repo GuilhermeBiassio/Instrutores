@@ -29,8 +29,6 @@ Route::controller(InstrutoresController::class)->group(function () {
     });
 });
 
-Route::get("instrutores/{instrutores}/edit", [InstrutoresController::class, "edit"])->name('instrutores.edit');
-
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
