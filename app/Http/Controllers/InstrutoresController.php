@@ -34,7 +34,7 @@ class InstrutoresController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(InstructorsFormRequest $request)
     {
         $dados = Instrutores::create($request->all());
         return to_route('instrutores.index')->with('success.message', "Dados cadastrados com sucesso!");

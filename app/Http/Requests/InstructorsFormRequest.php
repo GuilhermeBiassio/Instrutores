@@ -23,12 +23,12 @@ class InstructorsFormRequest extends FormRequest
     {
         return [
             'status' => ['required'],
-            'motorista' => ['required'],
-            'carro' => ['required'], 
-            'linha' => ['required'], 
-            'inicio_percurso' => ['required'], 
-            'final_percurso' => ['required'], 
-            'observacoes' => ['required'], 
+            'motorista' => ['required', 'integer'],
+            'carro' => ['required', 'integer'],
+            'linha' => ['required'],
+            'inicio_percurso' => ['required'],
+            'final_percurso' => ['required'],
+            'observacoes' => ['required'],
             'data_instrucao' => ['required']
         ];
     }
