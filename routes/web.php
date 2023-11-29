@@ -25,7 +25,7 @@ Route::controller(InstrutoresController::class)->group(function () {
         Route::post("/", "store")->name('instrutores.store');
         Route::get("/{instrutores}/edit", "edit")->name('instrutores.edit');
         Route::get("/search", "search")->name('instrutores.search');
-        Route::put("/{instrutor}", "update")->name('instrutores.update');
+        Route::put("/{instrutores}", "update")->name('instrutores.update');
     });
 });
 

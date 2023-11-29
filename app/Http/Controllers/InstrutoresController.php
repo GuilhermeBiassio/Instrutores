@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\InstructorsFormRequest;
 use App\Models\Instrutores;
 use Illuminate\Http\Request;
 
@@ -60,14 +61,10 @@ class InstrutoresController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Instrutores $instrutores)
+    public function update(InstructorsFormRequest $request, Instrutores $instrutores)
     {
-        // dd($instrutores->id);
-        $instrutores = new Instrutores();
-        $instrutores->find(13);
-        // $instrutores->fill($request->all());
-        dd($instrutores);
-        $instrutores->update();
+        $instrutores->fill($request->all());
+        $instrutores->save($request->all());
         return to_route('instrutores.index')->with('success.message', 'Dados atualizados com sucesso!');
     }
 
