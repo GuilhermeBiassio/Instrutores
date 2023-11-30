@@ -15,7 +15,7 @@ class InstrutoresController extends Controller
     public function index(Request $request)
     {
         //dd($request);
-        $dados = Instrutores::query()->orderBy('created_at', 'desc')->get();
+        $dados = Instrutores::all();
         $message = $request->session()->get('success.message');
         return view("instrutores.index")
             ->with('message', $message)
