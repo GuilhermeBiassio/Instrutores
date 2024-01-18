@@ -51,6 +51,7 @@
         </div>
     @endif
     <div class="container">
+        @include('components.messages')
         @yield('content')
     </div>
 </body>
