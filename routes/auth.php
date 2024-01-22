@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\InstrutoresController;
+use App\Http\Controllers\InstructorsController;
 use App\Http\Controllers\Auth\PasswordController;
 use App\Http\Controllers\Auth\NewPasswordController;
 use App\Http\Controllers\Auth\VerifyEmailController;
@@ -59,17 +59,18 @@ Route::middleware('auth')->group(function () {
         ->name('logout');
 
     Route::get('/', function () {
-        return to_route('instrutores.create');
+        return to_route('instructors.create');
     });
-    //Route::resource("/instrutores", InstrutoresController::class);
-    Route::controller(InstrutoresController::class)->group(function () {
-        Route::prefix("instrutores")->group(function () {
-            Route::get("/", 'index')->name('instrutores.index');
-            Route::get("/create", "create")->name('instrutores.create');
-            Route::post("/", "store")->name('instrutores.store');
-            Route::get("/{instrutores}/edit", "edit")->name('instrutores.edit');
-            Route::get("/search", "search")->name('instrutores.search');
-            Route::put("/{instrutores}", "update")->name('instrutores.update');
+    //Route::resource("/instructors", instructorsController::class);
+    Route::controller(InstructorsController::class)->group(function () {
+        Route::prefix("instructors")->group(function () {
+            Route::get("/", 'index')->name('instructors.index');
+            Route::get("/create", "create")->name('instructors.create');
+            Route::post("/", "store")->name('instructors.store');
+            Route::get("/{instructors}/edit", "edit")->name('instructors.edit');
+            Route::get("/search", "search")->name('instructors.search');
+            Route::post("/filter", "filter")->name('instructors.filter');
+            Route::put("/{instructors}", "update")->name('instructors.update');
         });
     });
 });

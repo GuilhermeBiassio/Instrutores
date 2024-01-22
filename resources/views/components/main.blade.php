@@ -31,10 +31,10 @@
             <div class="offcanvas-body">
                 <ul class="nav flex-column">
                     <li class="nav-item d-grid gap-2 mt-2">
-                        <a class="btn btn-primary" href="{{ route('instrutores.create') }}">Diário de Instrução</a>
+                        <a class="btn btn-primary" href="{{ route('instructors.create') }}">Diário de Instrução</a>
                     </li>
                     <li class="nav-item d-grid gap-2 mt-2">
-                        <a class="btn btn-primary" href="#">Filtrar Período</a>
+                        <a class="btn btn-primary" href="{{ route('instructors.search') }}">Filtrar Período</a>
                     </li>
                 </ul>
             </div>

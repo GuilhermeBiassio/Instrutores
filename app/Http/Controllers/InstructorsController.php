@@ -2,22 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\InstructorsFormRequest;
-use App\Models\Instrutores;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
-class InstrutoresController extends Controller
+use App\Models\Instructors;
+use Illuminate\Http\Request;
+use App\Http\Requests\InstructorsFormRequest;
+
+class InstructorsController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index(Request $request)
     {
-        //dd($request);
-        $dados = Instrutores::all();
+        $dados = Instructors::all();
         $message = $request->session()->get('success.message');
-        return view("instrutores.index")
+        return view("instructors.index")
             ->with('message', $message)
             ->with('dados', $dados)
         ;
@@ -28,7 +27,7 @@ class InstrutoresController extends Controller
      */
     public function create()
     {
-        return view("instrutores.create")->with('action', route('instrutores.store'));
+        return view("instructors.create")->with('action', route('instructors.store'));
     }
 
     /**
@@ -36,14 +35,14 @@ class InstrutoresController extends Controller
      */
     public function store(InstructorsFormRequest $request)
     {
-        $dados = Instrutores::create($request->all());
-        return to_route('instrutores.index')->with('success.message', "Dados cadastrados com sucesso!");
+        $dados = Instructors::create($request->all());
+        return to_route('instructors.index')->with('success.message', "Dados cadastrados com sucesso!");
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Instrutores $instrutores, Request $request)
+    public function show(Instructors $instrutores, Request $request)
     {
 
     }
@@ -51,11 +50,11 @@ class InstrutoresController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Instrutores $instrutores)
+    public function edit(Instructors $instrutores)
     {
         // dd($instrutores->id);
-        return view('instrutores.edit')
-            ->with('action', route('instrutores.update', $instrutores->id))
+        return view('instructors.edit')
+            ->with('action', route('instructors.update', $instrutores->id))
             ->with('dados', $instrutores);
     }
 
@@ -66,19 +65,24 @@ class InstrutoresController extends Controller
     {
         $instrutores->fill($request->all());
         $instrutores->save($request->all());
-        return to_route('instrutores.index')->with('success.message', 'Dados atualizados com sucesso!');
+        return to_route('instructors.index')->with('success.message', 'Dados atualizados com sucesso!');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Instrutores $instrutores)
+    public function destroy(Instructors $instrutores)
     {
         //
     }
 
     public function search()
     {
-        return view('instrutores.search');
+        return view('instructors.search');
+    }
+
+    public function filter(Request $request)
+    {
+        dd($request);
     }
 }
