@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-
-use App\Models\Instructors;
+use App\Models\Instructor;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\InstructorsFormRequest;
 
 class InstructorsController extends Controller
@@ -14,7 +14,7 @@ class InstructorsController extends Controller
      */
     public function index(Request $request)
     {
-        $dados = Instructors::all();
+        $dados = Instructor::all();
         $message = $request->session()->get('success.message');
         return view("instructors.index")
             ->with('message', $message)
@@ -35,7 +35,7 @@ class InstructorsController extends Controller
      */
     public function store(InstructorsFormRequest $request)
     {
-        $dados = Instructors::create($request->all());
+        $dados = Instructor::create($request->all());
         return to_route('instructors.index')->with('success.message', "Dados cadastrados com sucesso!");
     }
 
@@ -50,28 +50,30 @@ class InstructorsController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Instructors $instrutores)
+    public function edit($id)
     {
-        // dd($instrutores->id);
+        $data = Instructor::find($id);
+        // dd($data->id);
         return view('instructors.edit')
-            ->with('action', route('instructors.update', $instrutores->id))
-            ->with('dados', $instrutores);
+            ->with('action', route('instructors.update', $data->id))
+            ->with('dados', $data);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(InstructorsFormRequest $request, Instrutores $instrutores)
+    public function update(InstructorsFormRequest $request, $id)
     {
-        $instrutores->fill($request->all());
-        $instrutores->save($request->all());
+        $data = Instructor::find($id);
+        $data->fill($request->all());
+        $data->save($request->all());
         return to_route('instructors.index')->with('success.message', 'Dados atualizados com sucesso!');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Instructors $instrutores)
+    public function destroy(Instructor $instrutores)
     {
         //
     }
@@ -83,6 +85,16 @@ class InstructorsController extends Controller
 
     public function filter(Request $request)
     {
-        dd($request);
+        if (Auth::user()->is_admin == 1) {
+            $data = Instructor::whereBetween('data_instrucao', [$request->start, $request->end])
+                ->where('usuario', '=', $request->employee)
+                ->orWhere('motorista', '=', $request->driver);
+
+            dd($data);
+        } else {
+            $data = Instructor::whereBetween('data_instrucao', [$request->start, $request->end])->where('usuario', '=', Auth::user()->id)->get();
+        }
+
+        return view('instructors.index')->with('dados', $data);
     }
 }

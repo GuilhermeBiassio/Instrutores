@@ -6,10 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Instrutores extends Model
+class Instructor extends Model
 {
     use HasFactory;
-    protected $table = 'Instrutores';
+    protected $table = 'instrutores';
     protected $fillable = ['status', 'motorista', 'carro', 'linha', 'inicio_percurso', 'final_percurso', 'observacoes', 'data_instrucao'];
 
     protected static function booted()
