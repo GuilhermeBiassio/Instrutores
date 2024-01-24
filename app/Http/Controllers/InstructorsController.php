@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Instructor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests\InstructorsFormRequest;
 
 class InstructorsController extends Controller
@@ -40,23 +41,19 @@ class InstructorsController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     */
-    public function show(Instructors $instrutores, Request $request)
-    {
-
-    }
-
-    /**
      * Show the form for editing the specified resource.
      */
     public function edit($id)
     {
         $data = Instructor::find($id);
-        // dd($data->id);
-        return view('instructors.edit')
-            ->with('action', route('instructors.update', $data->id))
-            ->with('dados', $data);
+        if (Auth::user()->id == $data->usuario || Auth::user()->is_admin == 2) {
+            // dd($data->id);
+            return view('instructors.edit')
+                ->with('action', route('instructors.update', $data->id))
+                ->with('dados', $data);
+        } else {
+            return Redirect::back()->with('error.message', 'Você não tem permissão para acessar esses dados!');
+        }
     }
 
     /**
@@ -85,12 +82,37 @@ class InstructorsController extends Controller
 
     public function filter(Request $request)
     {
-        if (Auth::user()->is_admin == 1) {
+        $validate = $request->validate(
+            [
+                'start' => 'required',
+                'end' => 'required',
+                'employee' => 'integer | nullable',
+                'driver' => 'integer | nullable'
+            ],
+            [
+                'start' => 'A data inicial é obrigatória',
+                'end' => 'A data final é obrigatória',
+                'employee' => 'O campo Funcionário deve ser um número inteiro',
+                'driver' => 'O campo Motorista deve ser um número inteiro'
+            ]
+        );
+        if (Auth::user()->is_admin == (1 || 2)) {
             $data = Instructor::whereBetween('data_instrucao', [$request->start, $request->end])
-                ->where('usuario', '=', $request->employee)
-                ->orWhere('motorista', '=', $request->driver);
+                ->when(
+                    request('employee') != NULL,
+                    function ($q) {
+                        return $q->where('usuario', '=', request('employee'));
+                    }
+                )
+                ->when(
+                    request('driver') != NULL,
+                    function ($q) {
+                        return $q->where('motorista', '=', request('driver'));
+                    }
+                )
+                ->get();
 
-            dd($data);
+            // dd($data);
         } else {
             $data = Instructor::whereBetween('data_instrucao', [$request->start, $request->end])->where('usuario', '=', Auth::user()->id)->get();
         }

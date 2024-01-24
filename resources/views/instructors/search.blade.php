@@ -7,18 +7,18 @@
             <div class="col">
                 <label for="ini">Data inicial</label>
                 <input type="date" id="ini" name="start" class="form-control form-control-lg"
-                    placeholder="Data início" aria-label="First name">
+                    @if ($errors->any()) value="{{ old('start') }}" @endif required>
             </div>
             <div class="col">
                 <label for="end">Data final</label>
                 <input type="date" id="end" name="end" class="form-control form-control-lg"
-                    placeholder="Data final" aria-label="Last name">
+                    @if ($errors->any()) value="{{ old('end') }}" @endif required>
             </div>
         </div>
-        @if (Auth::user()->is_admin == 1)
+        @if (Auth::user()->is_admin == 1 || Auth::user()->is_admin == 2)
             <div class="row">
                 <label for="">Funcionário</label>
-                <div class="col w-100">
+                <div class="col">
                     <input type="text" name="employee" class="form-control form-control-lg" placeholder="Código">
                 </div>
                 <div class="col">
@@ -27,7 +27,7 @@
             </div>
             <div class="row">
                 <label for="">Motorista</label>
-                <div class="col w-100">
+                <div class="col">
                     <input type="text" name="driver" class="form-control form-control-lg" placeholder="Código">
                 </div>
                 <div class="col">

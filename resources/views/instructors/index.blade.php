@@ -2,8 +2,8 @@
 
 @section('content')
 
-    @isset($dados)
-        <h3>Lista de cadastros</h3>
+    <h3>Lista de cadastros</h3>
+    @if (!$dados->isEmpty())
         <div class="accordion accordion-flush mt-3" id="accordionFlush">
             @foreach ($dados as $dado)
                 <div class="accordion-item">
@@ -27,14 +27,20 @@
                                 <li class="list-group-item"><b>Linha:</b> {{ $dado->linha }}</li>
                                 <li class="list-group-item"><b>Obs:</b> {{ $dado->observacoes }}</li>
                             </ul>
-                            <div class="d-flex justify-content-end">
-                                <a href="{{ route('instructors.edit', $dado->id) }}"
-                                    class="btn btn-primary btn-lg align-item">Editar</a>
-                            </div>
+                            @if (Auth::user()->id == $dado->usuario || Auth::user()->is_admin == 2)
+                                <div class="d-flex justify-content-end">
+                                    <a href="{{ route('instructors.edit', $dado->id) }}"
+                                        class="btn btn-primary btn-lg align-item">Editar</a>
+                                </div>
+                            @endif
                         </div>
                     </div>
                 </div>
             @endforeach
         </div>
-    @endisset
+    @else
+        <div class="d-flex justify-content-center">
+            <h4>Nenhum registro...</h4>
+        </div>
+    @endif
 @endsection
