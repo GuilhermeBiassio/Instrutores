@@ -36,6 +36,11 @@
                     <li class="nav-item d-grid gap-2 mt-2">
                         <a class="btn btn-primary" href="{{ route('instructors.search') }}">Filtrar Período</a>
                     </li>
+                    @if (Auth::user()->is_admin == 2)
+                        <li class="nav-item d-grid gap-2 mt-2">
+                            <a class="btn btn-primary" href="{{ route('profile.index') }}">Listar Usuários</a>
+                        </li>
+                    @endif
                 </ul>
             </div>
 
@@ -54,6 +59,7 @@
         @include('components.messages')
         @yield('content')
     </div>
+    <script src="/assets/js/js.js"></script>
 </body>
 
 </html>

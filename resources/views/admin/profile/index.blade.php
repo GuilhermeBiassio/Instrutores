@@ -35,7 +35,7 @@
                                                     <form action="{{ route('profile.destroy', $user->id) }}" method="post">
                                                         @csrf
                                                         @method('DELETE')
-                                                        <button type="button" class="btn btn-danger">
+                                                        <button type="button" class="delete-btn btn btn-danger">
                                                             Excluir
                                                         </button>
                                                     </form>

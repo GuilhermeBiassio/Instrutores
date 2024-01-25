@@ -47,6 +47,6 @@ class RegisteredUserController extends Controller
 
         event(new Registered($user));
 
-        return redirect('profile/')->with('success.message', 'Usuário cadastro com sucesso!');
+        return to_route('profile.index')->with('success.message', 'Usuário cadastro com sucesso!');
     }
 }
