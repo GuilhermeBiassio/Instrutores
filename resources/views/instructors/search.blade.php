@@ -1,7 +1,7 @@
 @extends('components.main')
 
 @section('content')
-    <form action="{{ route('instructors.filter') }}" method="post">
+    <form action="{{ route('instructors.filter') }}" method="get">
         @csrf
         <div class="row">
             <div class="col">

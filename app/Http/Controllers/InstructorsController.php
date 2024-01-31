@@ -110,13 +110,36 @@ class InstructorsController extends Controller
                         return $q->where('motorista', '=', request('driver'));
                     }
                 )
-                ->get();
+                ->orderBy('usuario', 'desc')
+                ->paginate(1);
 
-            // dd($data);
         } else {
-            $data = Instructor::whereBetween('data_instrucao', [$request->start, $request->end])->where('usuario', '=', Auth::user()->id)->get();
+            $data = Instructor::whereBetween('data_instrucao', [$request->start, $request->end])->where('usuario', '=', Auth::user()->id)->paginate();
         }
 
-        return view('instructors.index')->with('dados', $data);
+        return view('instructors.index')->with([
+            'dados' => $data,
+            'request' => $request->input()
+        ]);
+    }
+
+    public function print(Request $request)
+    {
+        $data = Instructor::whereBetween('data_instrucao', [$request->start, $request->end])
+            ->when(
+                request('employee') != NULL,
+                function ($q) {
+                    return $q->where('usuario', '=', request('employee'));
+                }
+            )
+            ->when(
+                request('driver') != NULL,
+                function ($q) {
+                    return $q->where('motorista', '=', request('driver'));
+                }
+            )
+            ->orderBy('usuario', 'desc')
+            ->get();
+        return view('instructors.print')->with('dados', $data);
     }
 }

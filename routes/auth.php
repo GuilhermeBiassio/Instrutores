@@ -34,7 +34,8 @@ Route::middleware('auth')->group(function () {
             Route::post("/", "store")->name('instructors.store');
             Route::get("/{instructors}/edit", "edit")->name('instructors.edit');
             Route::get("/search", "search")->name('instructors.search');
-            Route::post("/filter", "filter")->name('instructors.filter');
+            Route::get("/filter", "filter")->name('instructors.filter');
+            Route::get("/print", "print")->name('instructors.print');
             Route::put("/{instructors}", "update")->name('instructors.update');
         });
         Route::middleware('super_admin')->group(function () {

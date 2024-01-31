@@ -4,6 +4,11 @@
 
     <h3>Lista de cadastros</h3>
     @if (!$dados->isEmpty())
+        @if (Auth::user()->is_admin == (1 || 2))
+            <a href="{{ route('instructors.print', $request) }}" class="btn btn-primary">
+                Imprimir
+            </a>
+        @endif
         <div class="accordion accordion-flush mt-3" id="accordionFlush">
             @foreach ($dados as $dado)
                 <div class="accordion-item">
@@ -37,6 +42,9 @@
                     </div>
                 </div>
             @endforeach
+        </div>
+        <div class="d-flex justify-content-center">
+            {{ $dados->appends($request)->links() }}
         </div>
     @else
         <div class="d-flex justify-content-center">
