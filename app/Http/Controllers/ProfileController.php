@@ -47,12 +47,15 @@ class ProfileController extends Controller
     public function update(Request $request, $id): RedirectResponse
     {
         $request->validate([
+            'id' => ['required', 'integer'],
+            'is_admin' => ['required', 'integer'],
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255'],
         ]);
         $data = User::find($id);
+
         if ($request->password == NULL) {
-            $data->fill($request->only('name', 'email'));
+            $data->fill($request->only('id', 'is_admin', 'name', 'email'));
         } else {
             $request->validate([
                 'password' => ['required', 'confirmed', Rules\Password::defaults()],
@@ -60,7 +63,7 @@ class ProfileController extends Controller
             $request->password = Hash::make($request->password);
             $data->fill($request->all());
         }
-        // dd($request);
+        // dd($data);
         $data->update();
 
         return Redirect::route('profile.index')->with('success.message', 'Perfil atualizado!');

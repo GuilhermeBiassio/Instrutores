@@ -18,7 +18,7 @@ return new class extends Migration {
             $table->string('inicio_percurso');
             $table->string('final_percurso');
             $table->string('linha');
-            $table->string('observacoes');
+            $table->string('observacoes', 400);
             $table->integer('usuario');
             $table->date('data_instrucao');
             $table->timestamps();

@@ -6,6 +6,30 @@
             @method('PUT')
         @endif
 
+        <!-- ID -->
+        <div class="mb-3">
+            <label for="id" class="form-label">
+                Código funcionário
+            </label>
+            <input id="id" class="form-control" type="text" name="id"
+                @if ($errors->any()) value="{{ old('id') }}" @endif
+                @if (isset($user)) value="{{ $user->id }}" @endif required autofocus
+                autocomplete="id" />
+        </div>
+
+        <div class="mb-3">
+            <label for="id" class="form-label">
+                Tipo usuário
+            </label>
+            <select class="form-select" name="is_admin" aria-label="Default select example" required>
+                <option selected disabled>Selecione</option>
+                <option value="0" @if (($errors->any() || isset($user)) && ($user->is_admin == 0 || (old('type_user') == 0 && !isset($user)))) selected @endif>
+                    Usuário</option>
+                <option value="1" @if (($errors->any() || isset($user)) && ($user->is_admin == 1 || (old('type_user') == 1 && !isset($user)))) selected @endif>Admin</option>
+                <option value="2" @if (($errors->any() || isset($user)) && ($user->is_admin == 2 || (old('type_user') == 2 && !isset($user)))) selected @endif>Super Admin</option>
+            </select>
+        </div>
+
         <!-- Name -->
         <div class="mb-3">
             <label for="name" class="form-label">
@@ -24,7 +48,8 @@
             </label>
             <input id="email" class="form-control" type="email" name="email"
                 @if ($errors->any()) value="{{ old('email') }}" @endif
-                @if (isset($user)) value="{{ $user->email }}" @endif required autocomplete="username" />
+                @if (isset($user)) value="{{ $user->email }}" @endif required
+                autocomplete="username" />
         </div>
 
         <!-- Password -->

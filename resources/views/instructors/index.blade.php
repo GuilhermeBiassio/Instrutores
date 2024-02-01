@@ -5,7 +5,7 @@
     <h3>Lista de cadastros</h3>
     @if (!$dados->isEmpty())
         @if (Auth::user()->is_admin == (1 || 2))
-            <a href="{{ route('instructors.print', $request) }}" class="btn btn-primary">
+            <a href="{{ route('instructors.print', $request) }}" target="_blank" class="btn btn-primary">
                 Imprimir
             </a>
         @endif
@@ -15,15 +15,16 @@
                     <h2 class="accordion-header">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                             data-bs-target="#id{{ $dado->id }}" aria-expanded="false" aria-controls="flush-collapseOne">
-                            Data da instrução:<b>{{ date('d/m/Y', strtotime($dado->data_instrucao)) }}</b>
+                            Data da instrução:<b>{{ date('d/m/Y H:i', strtotime($dado->created_at)) }}</b>
                         </button>
                     </h2>
                     <div id="id{{ $dado->id }}" class="accordion-collapse collapse" data-bs-parent="#accordionFlush">
                         <div class="accordion-body">
                             <ul class="list-group list-group-flush">
-                                <li class="list-group-item"><b>Data de cadastro:</b>
-                                    {{ date('d/m/Y H:i', strtotime($dado->created_at)) }}</li>
-                                <li class="list-group-item"><b>Instrutor:</b> {{ $dado->usuario }}</li>
+                                <li class="list-group-item"><b>Última atualização:</b>
+                                    {{ date('d/m/Y H:i', strtotime($dado->updated_at)) }}</li>
+                                <li class="list-group-item"><b>Instrutor:</b> {{ $dado->usuario . ' - ' . $dado->name }}
+                                </li>
                                 <li class="list-group-item"><b>Status:</b> {{ $dado->status }}</li>
                                 <li class="list-group-item"><b>Motorista:</b> {{ $dado->motorista }}</li>
                                 <li class="list-group-item"><b>Início Percurso:</b> {{ $dado->inicio_percurso }}</li>

@@ -15,7 +15,7 @@ class Instructor extends Model
     protected static function booted()
     {
         self::addGlobalScope('ordered', function (Builder $queryBuilder) {
-            $queryBuilder->orderBy('created_at', 'desc');
+            $queryBuilder->orderBy('data_instrucao', 'desc');
         });
     }
 }

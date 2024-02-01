@@ -110,12 +110,19 @@ class InstructorsController extends Controller
                         return $q->where('motorista', '=', request('driver'));
                     }
                 )
+                ->join('users', 'instrutores.usuario', '=', 'users.id')
+                ->select('users.name', 'instrutores.*')
                 ->orderBy('usuario', 'desc')
-                ->paginate(1);
+                ->paginate();
 
         } else {
-            $data = Instructor::whereBetween('data_instrucao', [$request->start, $request->end])->where('usuario', '=', Auth::user()->id)->paginate();
+            $data = Instructor::whereBetween('data_instrucao', [$request->start, $request->end])->where('usuario', '=', Auth::user()->id)
+                ->join('users', 'instrutores.usuario', '=', 'users.id')
+                ->select('users.name', 'instrutores.*')
+                ->paginate();
         }
+
+        // dd($data);
 
         return view('instructors.index')->with([
             'dados' => $data,
@@ -125,6 +132,9 @@ class InstructorsController extends Controller
 
     public function print(Request $request)
     {
+        $date = '';
+        $array = array();
+        $array2 = array();
         $data = Instructor::whereBetween('data_instrucao', [$request->start, $request->end])
             ->when(
                 request('employee') != NULL,
@@ -139,7 +149,20 @@ class InstructorsController extends Controller
                 }
             )
             ->orderBy('usuario', 'desc')
+            ->join('users', 'instrutores.usuario', '=', 'users.id')
+            ->select('users.name', 'instrutores.*')
             ->get();
+
+        foreach ($data as $value) {
+            if ($date !== $value->data_instrucao) {
+                $date = $value->data_instrucao;
+                $array[] = $date;
+            } else {
+                // $array[$date] = ;
+            }
+        }
+
+
         return view('instructors.print')->with('dados', $data);
     }
 }

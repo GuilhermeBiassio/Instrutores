@@ -8,14 +8,14 @@
     <style>
         .parent {
             display: grid;
-            grid-template-columns: repeat(12, 1fr);
+            grid-template-columns: repeat(3, 1fr);
             grid-template-rows: 1fr;
             grid-column-gap: 0px;
             grid-row-gap: 0px;
         }
 
         .div1 {
-            grid-area: 1 / 1 / 2 / 2;
+            grid-area: 1 / 1 / 5 / 2;
         }
 
         .div2 {
@@ -24,34 +24,6 @@
 
         .div3 {
             grid-area: 1 / 3 / 2 / 4;
-        }
-
-        .div4 {
-            grid-area: 1 / 4 / 2 / 5;
-        }
-
-        .div5 {
-            grid-area: 1 / 5 / 2 / 6;
-        }
-
-        .div6 {
-            grid-area: 1 / 6 / 2 / 7;
-        }
-
-        .div7 {
-            grid-area: 1 / 7 / 2 / 8;
-        }
-
-        .div8 {
-            grid-area: 1 / 8 / 2 / 11;
-        }
-
-        .div9 {
-            grid-area: 1 / 11 / 2 / 12;
-        }
-
-        .div10 {
-            grid-area: 1 / 12 / 2 / 12;
         }
 
         .center {
@@ -71,38 +43,39 @@
 </head>
 
 <body class="font">
-    <div class="parent bold">
-        <div class="center div1">INSTRUTOR</div>
-        <div class="center div2">STATUS</div>
-        <div class="center div3">MOTORISTA</div>
-        <div class="center div4">CARRO</div>
-        <div class="center div5">INI. PERCURSO</div>
-        <div class="center div6">FIM PERCURSO</div>
-        <div class="center div7">LINHA</div>
-        <div class="center div8">OBS</div>
-        <div class="center div9">DT INSTRUÇÃO</div>
-        <div class="center div10">DT CADASTRO</div>
-    </div>
-    <hr>
     @foreach ($dados as $dado)
         <div class="parent">
-            <div class="center div1">{{ $dado->usuario }}</div>
-            <div class="center div2">{{ $dado->status }}</div>
-            <div class="center div3">{{ $dado->motorista }}</div>
-            <div class="center div4">{{ $dado->carro }}</div>
-            <div class="center div5">{{ $dado->inicio_percurso }}</div>
-            <div class="center div6">{{ $dado->final_percurso }}</div>
-            <div class="center div7">{{ $dado->linha }}</div>
-            <div class="center div8">{{ $dado->observacoes }}</div>
-            <div class="center div9">{{ date('d/m/Y', strtotime($dado->data_instrucao)) }}</div>
-            <div class="center div10">{{ date('d/m/Y H:i', strtotime($dado->updated_at)) }}</div>
+            <div class="div1">
+                <ul>
+                    <li><b>INSTRUTOR:{{ $dado->usuario }}</b></li>
+                    <li><b>STATUS:</b>{{ $dado->status }}</li>
+                    <li><b>DT INSTRUÇÂO:</b>{{ date('d/m/Y', strtotime($dado->data_instrucao)) }}</li>
+                    <li><b>CADASTRO:</b>{{ date('d/m/Y H:i', strtotime($dado->updated_at)) }}</li>
+                </ul>
+            </div>
+            <div class="div2">
+                <ul>
+                    <li><b>MOTORISTA:</b>{{ $dado->motorista }}</li>
+                    <li><b>CARRO:</b>{{ $dado->carro }}</li>
+                    <li><b>INI. PERCURSO:</b>{{ $dado->inicio_percurso }}</li>
+                    <li><b>FIM PERCURSO:</b>{{ $dado->final_percurso }}</li>
+                </ul>
+            </div>
+            <div class="div3">
+                <ul>
+                    <li><b>LINHA:</b>{{ $dado->linha }}</li>
+                    <li><b>OBS:</b>{{ $dado->observacoes }}</li>
+                </ul>
+            </div>
         </div>
         <hr>
     @endforeach
 
+
+
     <script>
         window.onload = function() {
-            window.print();
+            // window.print();
         }
     </script>
 </body>

@@ -56,7 +56,8 @@
             @if ($errors->any()) value="{{ old('final_percurso') }}" @endif>
     </div>
     <div class="form-floating mb-2">
-        <textarea class="form-control" placeholder="Observações" id="obs" style="height: 200px" name="observacoes">
+        <textarea class="form-control" maxlength="400" placeholder="Observações" id="obs" style="height: 200px"
+            name="observacoes">
 @isset($dados)
 {{ $dados->observacoes }}
 @endisset @if ($errors->any())
