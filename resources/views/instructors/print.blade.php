@@ -72,9 +72,9 @@
 <body class="font">
     @foreach ($dados as $dado)
         <div class="flex justify-center border-bottom border-top">
-            <h3><b>DATA INSTRUÇÃO:</b> {{ date('d/m/Y', strtotime($dado[0]['data_instrucao'])) }}</h4>
+            <h3><b>DATA INSTRUÇÃO:</b> {{ date('d/m/Y', strtotime($dado['date'])) }}</h4>
         </div>
-        @foreach ($dado as $value)
+        @foreach ($dado['data'] as $value)
             <div class="parent border-bottom">
                 <div class="div1">
                     <ul>

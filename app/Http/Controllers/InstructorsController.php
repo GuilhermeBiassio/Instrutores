@@ -134,6 +134,18 @@ class InstructorsController extends Controller
     {
         $info = array();
         $dates = Instructor::whereBetween('data_instrucao', [$request->start, $request->end])
+            ->when(
+                request('employee') != NULL,
+                function ($q) {
+                    return $q->where('usuario', '=', request('employee'));
+                }
+            )
+            ->when(
+                request('driver') != NULL,
+                function ($q) {
+                    return $q->where('motorista', '=', request('driver'));
+                }
+            )
             ->select('data_instrucao')
             ->distinct()
             ->orderBy('data_instrucao', 'desc')
@@ -156,7 +168,10 @@ class InstructorsController extends Controller
                 ->join('users', 'instrutores.usuario', '=', 'users.id')
                 ->select('users.name', 'instrutores.*')
                 ->get();
-            $info[$date->data_instrucao] = $data;
+            $info[] = [
+                'date' => $date->data_instrucao,
+                'data' => $data
+            ];
         }
         // dd($info);
 
