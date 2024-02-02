@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
@@ -38,37 +38,67 @@
         .bold {
             font-weight: bold;
         }
+
+        ul {
+            list-style: none;
+        }
+
+        .flex {
+            display: flex;
+        }
+
+        .justify-center {
+            justify-content: center;
+        }
+
+        .border-bottom {
+            border-bottom: 1px solid #000;
+        }
+
+        .border-top {
+            border-top: 2px double #000;
+            margin-top: 2px;
+        }
+
+        @media print {
+            .break {
+                page-break-before: always;
+            }
+        }
     </style>
     <title>Report</title>
 </head>
 
 <body class="font">
     @foreach ($dados as $dado)
-        <div class="parent">
-            <div class="div1">
-                <ul>
-                    <li><b>INSTRUTOR:{{ $dado->usuario }}</b></li>
-                    <li><b>STATUS:</b>{{ $dado->status }}</li>
-                    <li><b>DT INSTRUÇÂO:</b>{{ date('d/m/Y', strtotime($dado->data_instrucao)) }}</li>
-                    <li><b>CADASTRO:</b>{{ date('d/m/Y H:i', strtotime($dado->updated_at)) }}</li>
-                </ul>
-            </div>
-            <div class="div2">
-                <ul>
-                    <li><b>MOTORISTA:</b>{{ $dado->motorista }}</li>
-                    <li><b>CARRO:</b>{{ $dado->carro }}</li>
-                    <li><b>INI. PERCURSO:</b>{{ $dado->inicio_percurso }}</li>
-                    <li><b>FIM PERCURSO:</b>{{ $dado->final_percurso }}</li>
-                </ul>
-            </div>
-            <div class="div3">
-                <ul>
-                    <li><b>LINHA:</b>{{ $dado->linha }}</li>
-                    <li><b>OBS:</b>{{ $dado->observacoes }}</li>
-                </ul>
-            </div>
+        <div class="flex justify-center border-bottom border-top">
+            <h3><b>DATA INSTRUÇÃO:</b> {{ date('d/m/Y', strtotime($dado[0]['data_instrucao'])) }}</h4>
         </div>
-        <hr>
+        @foreach ($dado as $value)
+            <div class="parent border-bottom">
+                <div class="div1">
+                    <ul>
+                        <li><b>INSTRUTOR:{{ $value->usuario . ' - ' . $value->name }}</b></li>
+                        <li><b>STATUS:</b>{{ $value->status }}</li>
+                        <li><b>CADASTRO:</b>{{ date('d/m/Y H:i', strtotime($value->updated_at)) }}</li>
+                        <li><b>MOTORISTA:</b>{{ $value->motorista }}</li>
+                    </ul>
+                </div>
+                <div class="div2">
+                    <ul>
+                        <li><b>CARRO:</b>{{ $value->carro }}</li>
+                        <li><b>INI. PERCURSO:</b>{{ $value->inicio_percurso }}</li>
+                        <li><b>FIM PERCURSO:</b>{{ $value->final_percurso }}</li>
+                        <li><b>LINHA:</b>{{ $value->linha }}</li>
+                    </ul>
+                </div>
+                <div class="div3">
+                    <ul>
+                        <li><b>OBSERVAÇÕES:</b></br>{{ $value->observacoes }}</li>
+                    </ul>
+                </div>
+            </div>
+        @endforeach
     @endforeach
 
 

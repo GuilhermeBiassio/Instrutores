@@ -132,37 +132,34 @@ class InstructorsController extends Controller
 
     public function print(Request $request)
     {
-        $date = '';
-        $array = array();
-        $array2 = array();
-        $data = Instructor::whereBetween('data_instrucao', [$request->start, $request->end])
-            ->when(
-                request('employee') != NULL,
-                function ($q) {
-                    return $q->where('usuario', '=', request('employee'));
-                }
-            )
-            ->when(
-                request('driver') != NULL,
-                function ($q) {
-                    return $q->where('motorista', '=', request('driver'));
-                }
-            )
-            ->orderBy('usuario', 'desc')
-            ->join('users', 'instrutores.usuario', '=', 'users.id')
-            ->select('users.name', 'instrutores.*')
+        $info = array();
+        $dates = Instructor::whereBetween('data_instrucao', [$request->start, $request->end])
+            ->select('data_instrucao')
+            ->distinct()
+            ->orderBy('data_instrucao', 'desc')
             ->get();
-
-        foreach ($data as $value) {
-            if ($date !== $value->data_instrucao) {
-                $date = $value->data_instrucao;
-                $array[] = $date;
-            } else {
-                // $array[$date] = ;
-            }
+        foreach ($dates as $date) {
+            $data = Instructor::where('data_instrucao', '=', $date->data_instrucao)
+                ->when(
+                    request('employee') != NULL,
+                    function ($q) {
+                        return $q->where('usuario', '=', request('employee'));
+                    }
+                )
+                ->when(
+                    request('driver') != NULL,
+                    function ($q) {
+                        return $q->where('motorista', '=', request('driver'));
+                    }
+                )
+                ->orderBy('usuario', 'desc')
+                ->join('users', 'instrutores.usuario', '=', 'users.id')
+                ->select('users.name', 'instrutores.*')
+                ->get();
+            $info[$date->data_instrucao] = $data;
         }
+        // dd($info);
 
-
-        return view('instructors.print')->with('dados', $data);
+        return view('instructors.print')->with('dados', $info);
     }
 }
