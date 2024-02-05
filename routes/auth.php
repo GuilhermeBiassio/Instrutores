@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\FormDataController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\InstructorsController;
@@ -29,7 +30,7 @@ Route::middleware('auth')->group(function () {
     //Route::resource("/instructors", instructorsController::class);
     Route::prefix("instructors")->group(function () {
         Route::controller(InstructorsController::class)->group(function () {
-            Route::get("/", 'index')->name('instructors.index');
+            Route::get("/", "index")->name('instructors.index');
             Route::get("/create", "create")->name('instructors.create');
             Route::post("/", "store")->name('instructors.store');
             Route::get("/{instructors}/edit", "edit")->name('instructors.edit');
@@ -38,6 +39,13 @@ Route::middleware('auth')->group(function () {
             Route::get("/print", "print")->name('instructors.print');
             Route::put("/{instructors}", "update")->name('instructors.update');
         });
+
+        Route::controller(FormDataController::class)->group(function () {
+            Route::prefix("formData")->group(function () {
+                Route::get("/employee", "employee")->name('formData.employee');
+            });
+        });
+
         Route::middleware('super_admin')->group(function () {
             Route::resource('profile', ProfileController::class);
             Route::get('register', [RegisteredUserController::class, 'create'])

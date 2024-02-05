@@ -105,7 +105,7 @@
 
     <script>
         window.onload = function() {
-            // window.print();
+            window.print();
         }
     </script>
 </body>

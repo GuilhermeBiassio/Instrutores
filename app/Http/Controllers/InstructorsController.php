@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Car;
+use App\Models\BusLine;
+use App\Models\Employee;
 use App\Models\Instructor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -18,8 +21,10 @@ class InstructorsController extends Controller
         $dados = Instructor::all();
         $message = $request->session()->get('success.message');
         return view("instructors.index")
-            ->with('message', $message)
-            ->with('dados', $dados)
+            ->with([
+                'message' => $message,
+                'dados' => $dados
+            ])
         ;
     }
 
@@ -28,7 +33,23 @@ class InstructorsController extends Controller
      */
     public function create()
     {
-        return view("instructors.create")->with('action', route('instructors.store'));
+        $drivers = Employee::select('ID_FUNCIONARIO', 'NOME_FUNCIONARIO')
+            ->orderBy('NOME_FUNCIONARIO', 'asc')
+            ->get();
+        $cars = Car::select('idcarro')
+            ->orderBy('idcarro', 'asc')
+            ->get();
+        $bus_lines = BusLine::select('ID_LINHA', 'NOME_LINHA')
+            ->distinct('ID_LINHA')
+            ->orderBy('ID_LINHA', 'asc')
+            ->get();
+        // dd($bus_line);
+        return view("instructors.create")->with([
+            'action' => route('instructors.store'),
+            'drivers' => $drivers,
+            'cars' => $cars,
+            'bus_lines' => $bus_lines
+        ]);
     }
 
     /**
@@ -49,8 +70,10 @@ class InstructorsController extends Controller
         if (Auth::user()->id == $data->usuario || Auth::user()->is_admin == 2) {
             // dd($data->id);
             return view('instructors.edit')
-                ->with('action', route('instructors.update', $data->id))
-                ->with('dados', $data);
+                ->with([
+                    'action' => route('instructors.update', $data->id),
+                    'dados' => $data
+                ]);
         } else {
             return Redirect::back()->with('error.message', 'Você não tem permissão para acessar esses dados!');
         }

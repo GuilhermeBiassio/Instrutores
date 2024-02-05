@@ -21,27 +21,53 @@
     </div>
     <div class="mb-3 input-group-lg">
         <label for="status" class="form-label">Status</label>
-        <input type="text" class="form-control" id="status" name="status"
+        <input type="text" list="sugestions" class="form-control" id="status" name="status"
             @isset($dados) value="{{ $dados->status }}" @endisset
             @if ($errors->any()) value="{{ old('status') }}" @endif>
+        <datalist id="sugestions">
+            <option value="FERIAS">
+            <option value="FOLGA">
+            <option value="ACOMPANHAMENTO">
+        </datalist>
     </div>
+
     <div class="mb-3 input-group-lg">
         <label for="motorista" class="form-label">Motorista</label>
-        <input type="text" class="form-control" id="motorista" name="motorista"
-            @isset($dados) value="{{ $dados->motorista }}" @endisset
-            @if ($errors->any()) value="{{ old('motorista') }}" @endif>
+        <select class="select form-select" name="motorista" aria-label="Default select example" required>
+            <option selected disabled>Selecione</option>
+            @if (isset($drivers))
+                @foreach ($drivers as $driver)
+                    <option value="{{ $driver['ID_FUNCIONARIO'] }}" @if ($errors->any() && old('motorista') == $driver('ID_FUNCIONARIO')) selected @endif>
+                        {{ $driver['ID_FUNCIONARIO'] . ' - ' . $driver['NOME_FUNCIONARIO'] }}</option>
+                @endforeach
+            @endif
+        </select>
     </div>
+
     <div class="mb-3 input-group-lg">
         <label for="carro" class="form-label">Carro</label>
-        <input type="text" class="form-control" id="carro" name="carro"
-            @isset($dados) value="{{ $dados->carro }}" @endisset
-            @if ($errors->any()) value="{{ old('carro') }}" @endif>
+        <select class="select form-select" name="carro" aria-label="Default select example" required>
+            <option selected disabled>Selecione</option>
+            @if (isset($cars))
+                @foreach ($cars as $car)
+                    <option value="{{ $car['idcarro'] }}" @if ($errors->any() && old('carro') == $car('idcarro')) selected @endif>
+                        {{ $car['idcarro'] }}</option>
+                @endforeach
+            @endif
+        </select>
     </div>
+
     <div class="mb-3 input-group-lg">
         <label for="linha" class="form-label">Linha</label>
-        <input type="text" class="form-control" id="linha" name="linha"
-            @isset($dados) value="{{ $dados->linha }}" @endisset
-            @if ($errors->any()) value="{{ old('linha') }}" @endif>
+        <select class="select form-select" name="linha" aria-label="Default select example" required>
+            <option selected disabled>Selecione</option>
+            @if (isset($bus_lines))
+                @foreach ($bus_lines as $bus_line)
+                    <option value="{{ $bus_line['ID_LINHA'] }}" @if ($errors->any() && old('linha') == $bus_line('ID_LINHA')) selected @endif>
+                        {{ $bus_line['ID_LINHA'] . ' - ' . $bus_line['NOME_LINHA'] }}</option>
+                @endforeach
+            @endif
+        </select>
     </div>
     <div class="mb-3 input-group-lg">
         <label for="ini" class="form-label">Início Percurso</label>

@@ -59,6 +59,8 @@
         @include('components.messages')
         @yield('content')
     </div>
+    <script src="/assets/js/jquery-3.7.1.min.js"></script>
+    <script src="/assets/js/select2.js"></script>
     <script src="/assets/js/js.js"></script>
 </body>
 

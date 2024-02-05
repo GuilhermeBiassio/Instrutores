@@ -15,23 +15,26 @@
                     @if ($errors->any()) value="{{ old('end') }}" @endif required>
             </div>
         </div>
-        @if (Auth::user()->is_admin == 1 || Auth::user()->is_admin == 2)
+        @if (Auth::user()->is_admin == (1 || 2))
             <div class="row">
                 <label for="">Funcionário</label>
                 <div class="col">
-                    <input type="text" name="employee" class="form-control form-control-lg" placeholder="Código">
+                    <input type="text" id="employee" name="employee" class="form-control form-control-lg"
+                        placeholder="Código">
                 </div>
                 <div class="col">
-                    <input type="text" class="form-control form-control-lg" placeholder="Nome" disabled>
+                    <input type="text" id="employeeAuto" class="form-control form-control-lg" placeholder="Nome"
+                        disabled>
                 </div>
             </div>
             <div class="row">
                 <label for="">Motorista</label>
                 <div class="col">
-                    <input type="text" name="driver" class="form-control form-control-lg" placeholder="Código">
+                    <input type="text" id="driver" name="driver" class="form-control form-control-lg"
+                        placeholder="Código">
                 </div>
                 <div class="col">
-                    <input type="text" class="form-control form-control-lg" placeholder="Nome" disabled>
+                    <input type="text" id="driverAuto" class="form-control form-control-lg" placeholder="Nome" disabled>
                 </div>
             </div>
         @endif
