@@ -51,6 +51,8 @@ class ProfileController extends Controller
             'is_admin' => ['required', 'integer'],
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255'],
+        ], [
+            'id' => 'O campo código deve ser um número inteiro.'
         ]);
         $data = User::find($id);
 

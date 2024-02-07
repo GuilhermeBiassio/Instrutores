@@ -5,8 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Instrutores</title>
-    <link rel="stylesheet" href="/vendor/ttskch/select2-bootstrap4-theme/dist/select2-bootstrap4.min.css">
-    @vite(['resources/js/app.js'])
+    @vite(['resources/js/app.js', 'node_modules/select2/dist/css/select2.min.css', 'node_modules/select2/dist/js/select2.min.js', 'vendor/ttskch/select2-bootstrap4-theme/dist/select2-bootstrap4.min.css'])
 </head>
 
 <body>
@@ -61,8 +60,8 @@
         @yield('content')
     </div>
     <script src="/assets/js/jquery-3.7.1.min.js"></script>
-    <script src="/assets/js/select2.js"></script>
     <script src="/assets/js/js.js"></script>
+    @include('components.instructors.js')
 </body>
 
 </html>

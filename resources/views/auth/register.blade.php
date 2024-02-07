@@ -23,10 +23,10 @@
             </label>
             <select class="form-select" name="is_admin" aria-label="Default select example" required>
                 <option selected disabled>Selecione</option>
-                <option value="0" @if (($errors->any() || isset($user)) && ($user->is_admin == 0 || (old('type_user') == 0 && !isset($user)))) selected @endif>
+                <option value="0" @if (($errors->any() && old('type_user') == 0) || (isset($user) && $user->is_admin == 0)) selected @endif>
                     Usuário</option>
-                <option value="1" @if (($errors->any() || isset($user)) && ($user->is_admin == 1 || (old('type_user') == 1 && !isset($user)))) selected @endif>Admin</option>
-                <option value="2" @if (($errors->any() || isset($user)) && ($user->is_admin == 2 || (old('type_user') == 2 && !isset($user)))) selected @endif>Super Admin</option>
+                <option value="1" @if (($errors->any() && old('type_user') == 1) || (isset($user) && $user->is_admin == 1)) selected @endif>Admin</option>
+                <option value="2" @if (($errors->any() && old('type_user') == 2) || (isset($user) && $user->is_admin == 2)) selected @endif>Super Admin</option>
             </select>
         </div>
 

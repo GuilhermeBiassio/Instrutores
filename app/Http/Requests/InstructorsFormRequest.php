@@ -22,14 +22,14 @@ class InstructorsFormRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'data_instrucao' => ['required', 'date'],
             'status' => ['required'],
             'motorista' => ['required', 'integer'],
             'carro' => ['required', 'integer'],
             'linha' => ['required'],
-            'inicio_percurso' => ['required'],
-            'final_percurso' => ['required'],
-            'observacoes' => ['required'],
-            'data_instrucao' => ['required']
+            'inicio_percurso' => ['required', 'date'],
+            'final_percurso' => ['required', 'date'],
+            'observacoes' => ['required']
         ];
     }
 }

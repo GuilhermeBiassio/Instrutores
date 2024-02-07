@@ -37,7 +37,7 @@
             <option selected disabled>Selecione</option>
             @if (isset($drivers))
                 @foreach ($drivers as $driver)
-                    <option value="{{ $driver['ID_FUNCIONARIO'] }}" @if ($errors->any() && old('motorista') == $driver('ID_FUNCIONARIO')) selected @endif>
+                    <option value="{{ $driver['ID_FUNCIONARIO'] }}" @if (($errors->any() || isset($dados)) && (old('motorista') || $dados->motorista) == $driver['ID_FUNCIONARIO']) selected @endif>
                         {{ $driver['ID_FUNCIONARIO'] . ' - ' . $driver['NOME_FUNCIONARIO'] }}</option>
                 @endforeach
             @endif
@@ -50,7 +50,7 @@
             <option selected disabled>Selecione</option>
             @if (isset($cars))
                 @foreach ($cars as $car)
-                    <option value="{{ $car['idcarro'] }}" @if ($errors->any() && old('carro') == $car('idcarro')) selected @endif>
+                    <option value="{{ $car['idcarro'] }}" @if ($errors->any() && old('carro') == $car['idcarro']) selected @endif>
                         {{ $car['idcarro'] }}</option>
                 @endforeach
             @endif
@@ -63,7 +63,7 @@
             <option selected disabled>Selecione</option>
             @if (isset($bus_lines))
                 @foreach ($bus_lines as $bus_line)
-                    <option value="{{ $bus_line['ID_LINHA'] }}" @if ($errors->any() && old('linha') == $bus_line('ID_LINHA')) selected @endif>
+                    <option value="{{ $bus_line['ID_LINHA'] }}" @if ($errors->any() && old('linha') == $bus_line['ID_LINHA']) selected @endif>
                         {{ $bus_line['ID_LINHA'] . ' - ' . $bus_line['NOME_LINHA'] }}</option>
                 @endforeach
             @endif
@@ -71,13 +71,13 @@
     </div>
     <div class="mb-3 input-group-lg">
         <label for="ini" class="form-label">Início Percurso</label>
-        <input type="text" class="form-control" id="ini" name="inicio_percurso"
+        <input type="date" class="form-control" id="ini" name="inicio_percurso"
             @isset($dados) value="{{ $dados->inicio_percurso }}" @endisset
             @if ($errors->any()) value="{{ old('inicio_percurso') }}" @endif>
     </div>
     <div class="mb-3 input-group-lg">
         <label for="fim" class="form-label">Final Percurso</label>
-        <input type="text" class="form-control" id="fim" name="final_percurso"
+        <input type="date" class="form-control" id="fim" name="final_percurso"
             @isset($dados) value="{{ $dados->final_percurso }}" @endisset
             @if ($errors->any()) value="{{ old('final_percurso') }}" @endif>
     </div>

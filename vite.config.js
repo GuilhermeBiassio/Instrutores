@@ -6,6 +6,9 @@ export default defineConfig({
     plugins: [
         laravel([
             'resources/js/app.js',
+            'node_modules/select2/dist/css/select2.min.css',
+            'node_modules/select2/dist/js/select2.min.js',
+            'vendor/ttskch/select2-bootstrap4-theme/dist/select2-bootstrap4.min.css'
         ]),
     ],
     resolve: {

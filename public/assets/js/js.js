@@ -4,12 +4,6 @@ var driver = document.querySelector("#driver");
 var employeeAuto = document.querySelector("#employeeAuto");
 var driverAuto = document.querySelector("#driverAuto");
 
-$(document).ready(function (){
-    $('.select').select2({
-        theme: "bootstrap"
-    });
-});
-
 
 function AjaxRequest(inputData, inputReturn){
     let name;
