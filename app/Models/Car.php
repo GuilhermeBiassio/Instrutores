@@ -11,4 +11,12 @@ class Car extends Model
 
     protected $connection = 'second_db';
     protected $table = 'carros';
+
+    public static function selectList()
+    {
+        return self::select('idcarro')
+        ->orderBy('idcarro', 'asc')
+        ->get();
+    }
 }
+

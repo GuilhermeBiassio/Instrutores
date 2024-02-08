@@ -28,10 +28,7 @@ class InstructorsController extends Controller
         ;
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    private function selectList()
     {
         $drivers = Employee::select('ID_FUNCIONARIO', 'NOME_FUNCIONARIO')
             ->orderBy('NOME_FUNCIONARIO', 'asc')
@@ -43,12 +40,25 @@ class InstructorsController extends Controller
             ->distinct('ID_LINHA')
             ->orderBy('ID_LINHA', 'asc')
             ->get();
-        // dd($bus_line);
-        return view("instructors.create")->with([
-            'action' => route('instructors.store'),
+        $array = [
             'drivers' => $drivers,
             'cars' => $cars,
             'bus_lines' => $bus_lines
+        ];
+
+        return $array;
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
+        return view("instructors.create")->with([
+            'action' => route('instructors.store'),
+            'drivers' => Employee::selectList(),
+            'cars' => Car::selectList(),
+            'bus_lines' => BusLine::selectList()
         ]);
     }
 
@@ -72,7 +82,10 @@ class InstructorsController extends Controller
             return view('instructors.edit')
                 ->with([
                     'action' => route('instructors.update', $data->id),
-                    'dados' => $data
+                    'dados' => $data,
+                    'drivers' => Employee::selectList(),
+                    'cars' => Car::selectList(),
+                    'bus_lines' => BusLine::selectList()
                 ]);
         } else {
             return Redirect::back()->with('error.message', 'Você não tem permissão para acessar esses dados!');
@@ -87,7 +100,7 @@ class InstructorsController extends Controller
         $data = Instructor::find($id);
         $data->fill($request->all());
         $data->save($request->all());
-        return to_route('instructors.index')->with('success.message', 'Dados atualizados com sucesso!');
+        return Redirect::back()->with('success.message', 'Dados atualizados com sucesso!');
     }
 
     /**

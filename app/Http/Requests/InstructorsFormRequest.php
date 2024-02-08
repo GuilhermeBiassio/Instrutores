@@ -27,8 +27,8 @@ class InstructorsFormRequest extends FormRequest
             'motorista' => ['required', 'integer'],
             'carro' => ['required', 'integer'],
             'linha' => ['required'],
-            'inicio_percurso' => ['required', 'date'],
-            'final_percurso' => ['required', 'date'],
+            'inicio_percurso' => ['required'],
+            'final_percurso' => ['required'],
             'observacoes' => ['required']
         ];
     }

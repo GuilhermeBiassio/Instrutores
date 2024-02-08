@@ -11,4 +11,12 @@ class BusLine extends Model
 
     protected $connection = 'second_db';
     protected $table = 'linha';
+
+    public static function selectList()
+    {
+        return self::select('ID_LINHA', 'NOME_LINHA')
+            ->distinct('ID_LINHA')
+            ->orderBy('ID_LINHA', 'asc')
+            ->get();
+    }
 }

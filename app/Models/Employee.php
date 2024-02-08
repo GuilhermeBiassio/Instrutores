@@ -11,4 +11,11 @@ class Employee extends Model
 
     protected $connection = 'second_db';
     protected $table = 'funcionario';
+
+    public static function selectList()
+    {
+        return self::select('ID_FUNCIONARIO', 'NOME_FUNCIONARIO')
+            ->orderBy('NOME_FUNCIONARIO', 'asc')
+            ->get();
+    }
 }
