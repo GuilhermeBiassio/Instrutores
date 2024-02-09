@@ -8,15 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class Car extends Model
 {
     use HasFactory;
-
-    protected $connection = 'second_db';
     protected $table = 'carros';
 
     public static function selectList()
     {
         return self::select('idcarro')
-        ->orderBy('idcarro', 'asc')
-        ->get();
+            ->orderBy('idcarro', 'asc')
+            ->get();
     }
 }
 

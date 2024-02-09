@@ -103,14 +103,6 @@ class InstructorsController extends Controller
         return Redirect::back()->with('success.message', 'Dados atualizados com sucesso!');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Instructor $instrutores)
-    {
-        //
-    }
-
     public function search()
     {
         return view('instructors.search');
