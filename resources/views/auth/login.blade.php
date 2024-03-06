@@ -1,6 +1,6 @@
 @extends('components.main')
 @section('content')
-    <div class="container border p-4 mt-4 col-6 rounded">
+    <div class="container border p-4 mt-4 col-12 col-md-6 rounded">
         <form method="POST" action="{{ route('login') }}">
             <div class="mb-3">
                 <h3 class="text-center">Login</h3>
