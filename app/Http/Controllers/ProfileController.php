@@ -16,7 +16,7 @@ class ProfileController extends Controller
 {
     public function index()
     {
-        $users = User::all();
+        $users = User::orderBy('name', 'ASC')->get();
         return view('admin.profile.index')->with('users', $users)->with('title', 'Users List');
     }
     /**
@@ -50,7 +50,7 @@ class ProfileController extends Controller
             'id' => ['required', 'integer'],
             'is_admin' => ['required', 'integer'],
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255'],
+            'email' => ['sometimes', 'nullable', 'string', 'lowercase', 'email', 'max:255'],
         ], [
             'id' => 'O campo código deve ser um número inteiro.'
         ]);
@@ -60,7 +60,7 @@ class ProfileController extends Controller
             $data->fill($request->only('id', 'is_admin', 'name', 'email'));
         } else {
             $request->validate([
-                'password' => ['required', 'confirmed', Rules\Password::defaults()],
+                'password' => ['required', 'confirmed', 'min:5'],
             ]);
             $request->password = Hash::make($request->password);
             $data->fill($request->all());

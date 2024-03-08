@@ -38,8 +38,8 @@ class RegisteredUserController extends Controller
                 'id' => ['required', 'integer'],
                 'is_admin' => ['required', 'integer'],
                 'name' => ['required', 'string', 'max:255'],
-                'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
-                'password' => ['required', 'confirmed', Rules\Password::defaults()],
+                'email' => ['sometimes', 'nullable', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
+                'password' => ['required', 'confirmed', 'min:5'],
             ],
             ['id' => 'O campo código deve ser um número inteiro.']
         );

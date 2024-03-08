@@ -5,6 +5,7 @@ var employeeAuto = document.querySelector("#employeeAuto");
 var driverAuto = document.querySelector("#driverAuto");
 
 
+
 function AjaxRequest(inputData, inputReturn){
     let name;
     $.ajax({
@@ -41,4 +42,6 @@ deleteBtns.forEach(function(deleteBtn) {
         }
     })
 });
+
+
 

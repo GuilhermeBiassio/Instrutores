@@ -4,7 +4,7 @@
 
     <h3>Lista de cadastros</h3>
     @if (!$dados->isEmpty())
-        @if (Auth::user()->is_admin == (1 || 2))
+        @if (Auth::user()->is_admin == (1 || 2) && isset($request))
             <a href="{{ route('instructors.print', $request) }}" target="_blank" class="btn btn-primary">
                 Imprimir
             </a>
@@ -15,7 +15,7 @@
                     <h2 class="accordion-header">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                             data-bs-target="#id{{ $dado->id }}" aria-expanded="false" aria-controls="flush-collapseOne">
-                            Data da instrução:<b>{{ date('d/m/Y H:i', strtotime($dado->created_at)) }}</b>
+                            Data da instrução:<b>{{ date('d/m/Y', strtotime($dado->data_instrucao)) }}</b>
                         </button>
                     </h2>
                     <div id="id{{ $dado->id }}" class="accordion-collapse collapse" data-bs-parent="#accordionFlush">

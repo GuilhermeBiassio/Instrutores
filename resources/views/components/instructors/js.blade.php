@@ -1,4 +1,5 @@
 <script>
+    var teste = document.querySelector("#status");
     $(document).ready(function() {
         $('.select').select2({
             theme: 'bootstrap4',
@@ -8,5 +9,9 @@
             allowClear: Boolean($(this).data('allow-clear')),
             closeOnSelect: !$(this).attr('multiple'),
         });
+    });
+
+    teste.addEventListener('keyup', (event) => {
+        alert('teste');
     });
 </script>

@@ -1,12 +1,3 @@
-@if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
 <form class="p-3" method="post" action="{{ $action }}">
     @csrf
     @isset($dados)
@@ -14,7 +5,7 @@
     @endisset
 
     <div class="mb-3 input-group-lg">
-        <label for="status" class="form-label">Data</label>
+        <label for="data" class="form-label">Data</label>
         <input type="date" class="form-control" id="data" name="data_instrucao"
             @isset($dados) value="{{ $dados->data_instrucao }}"  @endisset
             @if ($errors->any()) value="{{ old('data_instrucao') }}" @endif @required(true)>

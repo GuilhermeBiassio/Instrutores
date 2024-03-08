@@ -48,8 +48,7 @@
             </label>
             <input id="email" class="form-control" type="email" name="email"
                 @if ($errors->any()) value="{{ old('email') }}" @endif
-                @if (isset($user)) value="{{ $user->email }}" @endif required
-                autocomplete="username" />
+                @if (isset($user)) value="{{ $user->email }}" @endif autocomplete="username" />
         </div>
 
         <!-- Password -->

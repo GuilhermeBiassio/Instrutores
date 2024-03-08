@@ -67,8 +67,9 @@ class InstructorsController extends Controller
      */
     public function store(InstructorsFormRequest $request)
     {
-        $dados = Instructor::create($request->all());
-        return to_route('instructors.index')->with('success.message', "Dados cadastrados com sucesso!");
+        // dd(Auth::user()->id);
+        $id = Instructor::create(array_merge($request->all(), ['usuario' => Auth::user()->id]))->id;
+        return to_route('instructors.edit', $id)->with('success.message', "Dados cadastrados com sucesso!");
     }
 
     /**

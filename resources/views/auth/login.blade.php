@@ -9,11 +9,11 @@
 
             <!-- Email Address -->
             <div class="mb-3">
-                <label for="email" class="form-label">
-                    Email
+                <label for="login" class="form-label">
+                    Usuário / E-mail
                 </label>
-                <input id="email" class="form-control" type="email" name="email"
-                    @if ($errors->any())  @endif value="{{ old('email') }}" required autofocus
+                <input id="login" class="form-control" type="text" name="login"
+                    @if ($errors->any())  @endif value="{{ old('login') }}" required autofocus
                     autocomplete="username" />
             </div>
 

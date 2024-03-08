@@ -10,7 +10,7 @@ class Instructor extends Model
 {
     use HasFactory;
     protected $table = 'instrutores';
-    protected $fillable = ['status', 'motorista', 'carro', 'linha', 'inicio_percurso', 'final_percurso', 'observacoes', 'data_instrucao'];
+    protected $fillable = ['status', 'motorista', 'carro', 'linha', 'inicio_percurso', 'final_percurso', 'observacoes', 'data_instrucao', 'usuario'];
 
     protected static function booted()
     {
