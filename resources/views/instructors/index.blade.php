@@ -15,14 +15,16 @@
                     <h2 class="accordion-header">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                             data-bs-target="#id{{ $dado->id }}" aria-expanded="false" aria-controls="flush-collapseOne">
-                            Data da instrução:<b>{{ date('d/m/Y', strtotime($dado->data_instrucao)) }}</b>
+                            <b>{{ date('d/m/Y', strtotime($dado->data_instrucao)) }}</b><span> -
+                                {{ $dado->usuario . ' - ' . $dado->name }}</span>
                         </button>
                     </h2>
                     <div id="id{{ $dado->id }}" class="accordion-collapse collapse" data-bs-parent="#accordionFlush">
                         <div class="accordion-body">
                             <ul class="list-group list-group-flush">
                                 <li class="list-group-item"><b>Última atualização:</b>
-                                    {{ date('d/m/Y H:i', strtotime($dado->updated_at)) }}</li>
+                                    {{ date('d/m/Y', strtotime($dado->updated_at)) }}
+                                </li>
                                 <li class="list-group-item"><b>Instrutor:</b> {{ $dado->usuario . ' - ' . $dado->name }}
                                 </li>
                                 <li class="list-group-item"><b>Status:</b> {{ $dado->status }}</li>

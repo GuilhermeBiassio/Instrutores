@@ -13,7 +13,7 @@ function AjaxRequest(inputData, inputReturn){
         type: 'GET',
         data: { employee: inputData.value }, 
         success: function (data, status, xhr) {
-            console.log(Object.values(data));
+            // console.log(Object.values(data));
             name = JSON.parse(data)[0].NOME_FUNCIONARIO;
             if(name !== ''){
                 inputReturn.value = name;

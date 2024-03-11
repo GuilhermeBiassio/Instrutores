@@ -13,12 +13,12 @@ return new class extends Migration {
         Schema::create('instrutores', function (Blueprint $table) {
             $table->id('id');
             $table->string('status');
-            $table->integer('motorista');
-            $table->integer('carro');
-            $table->string('inicio_percurso');
-            $table->string('final_percurso');
-            $table->string('linha');
-            $table->string('observacoes', 400);
+            $table->integer('motorista')->nullabel();
+            $table->integer('carro')->nullable();
+            $table->string('inicio_percurso')->nullable();
+            $table->string('final_percurso')->nullable();
+            $table->string('linha')->nullable();
+            $table->string('observacoes', 400)->nullable();
             $table->integer('usuario');
             $table->date('data_instrucao');
             $table->timestamps();

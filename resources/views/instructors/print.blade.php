@@ -61,6 +61,10 @@
         }
 
         @media print {
+            #print {
+                display: none;
+            }
+
             .break {
                 page-break-before: always;
             }
@@ -70,6 +74,7 @@
 </head>
 
 <body class="font">
+    <button class="btn btn-primary" onclick="print()" id="print">Imprimir</button>
     @foreach ($dados as $dado)
         <div class="flex justify-center border-bottom border-top">
             <h3><b>DATA INSTRUÇÃO:</b> {{ date('d/m/Y', strtotime($dado['date'])) }}</h4>
@@ -100,14 +105,6 @@
             </div>
         @endforeach
     @endforeach
-
-
-
-    <script>
-        window.onload = function() {
-            window.print();
-        }
-    </script>
 </body>
 
 </html>

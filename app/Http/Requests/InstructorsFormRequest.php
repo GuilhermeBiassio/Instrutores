@@ -23,13 +23,13 @@ class InstructorsFormRequest extends FormRequest
     {
         return [
             'data_instrucao' => ['required', 'date'],
-            'status' => ['required'],
-            'motorista' => ['required', 'integer'],
-            'carro' => ['required', 'integer'],
-            'linha' => ['required'],
-            'inicio_percurso' => ['required'],
-            'final_percurso' => ['required'],
-            'observacoes' => ['required']
+            'status' => ['required', 'string'],
+            'motorista' => ['nullable', 'integer'],
+            'carro' => ['nullable', 'integer'],
+            'linha' => ['nullable'],
+            'inicio_percurso' => ['nullable', 'time'],
+            'final_percurso' => ['nullable', 'time'],
+            'observacoes' => ['nullable', 'string']
         ];
     }
 }
