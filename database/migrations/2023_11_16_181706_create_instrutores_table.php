@@ -13,7 +13,7 @@ return new class extends Migration {
         Schema::create('instrutores', function (Blueprint $table) {
             $table->id('id');
             $table->string('status');
-            $table->integer('motorista')->nullabel();
+            $table->integer('motorista')->nullable();
             $table->integer('carro')->nullable();
             $table->string('inicio_percurso')->nullable();
             $table->string('final_percurso')->nullable();
