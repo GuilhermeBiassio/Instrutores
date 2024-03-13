@@ -27,8 +27,8 @@ class InstructorsFormRequest extends FormRequest
             'motorista' => ['nullable', 'integer'],
             'carro' => ['nullable', 'integer'],
             'linha' => ['nullable'],
-            'inicio_percurso' => ['nullable', 'time'],
-            'final_percurso' => ['nullable', 'time'],
+            'inicio_percurso' => ['nullable'],
+            'final_percurso' => ['nullable'],
             'observacoes' => ['nullable', 'string']
         ];
     }
