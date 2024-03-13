@@ -77,7 +77,9 @@
     <button class="btn btn-primary" onclick="print()" id="print">Imprimir</button>
     @foreach ($dados as $dado)
         <div class="flex justify-center border-bottom border-top">
-            <h3><b>DATA INSTRUÇÃO:</b> {{ date('d/m/Y', strtotime($dado['date'])) }}</h4>
+            <h3><b>DATA INSTRUÇÃO:</b>
+                {{ date('d/m/Y', strtotime($dado['date'])) . ' - ' . $week_day[date('D', strtotime($dado['date']))] }}
+                </h4>
         </div>
         @foreach ($dado['data'] as $value)
             <div class="parent border-bottom">

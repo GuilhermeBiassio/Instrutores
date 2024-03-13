@@ -16,7 +16,7 @@
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                             data-bs-target="#id{{ $dado->id }}" aria-expanded="false" aria-controls="flush-collapseOne">
                             <b>{{ date('d/m/Y', strtotime($dado->data_instrucao)) }}</b><span> -
-                                {{ $dado->usuario . ' - ' . $dado->name }}</span>
+                                {{ $dado->usuario . ' - ' . $dado->name . ' - ' . $week_day[date('D', strtotime($dado->data_instrucao))] }}</span>
                         </button>
                     </h2>
                     <div id="id{{ $dado->id }}" class="accordion-collapse collapse" data-bs-parent="#accordionFlush">

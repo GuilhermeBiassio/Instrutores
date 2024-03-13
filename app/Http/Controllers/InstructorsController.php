@@ -13,6 +13,15 @@ use App\Http\Requests\InstructorsFormRequest;
 
 class InstructorsController extends Controller
 {
+    private $week_day = [
+        'Sun' => 'Domingo',
+        'Mon' => 'Segunda-Feira',
+        'Tue' => 'Terca-Feira',
+        'Wed' => 'Quarta-Feira',
+        'Thu' => 'Quinta-Feira',
+        'Fri' => 'Sexta-Feira',
+        'Sat' => 'Sábado'
+    ];
     /**
      * Display a listing of the resource.
      */
@@ -23,7 +32,7 @@ class InstructorsController extends Controller
         return view("instructors.index")
             ->with([
                 'message' => $message,
-                'dados' => $dados
+                'dados' => $dados,
             ])
         ;
     }
@@ -155,7 +164,8 @@ class InstructorsController extends Controller
 
         return view('instructors.index')->with([
             'dados' => $data,
-            'request' => $request->input()
+            'request' => $request->input(),
+            'week_day' => $this->week_day
         ]);
     }
 
@@ -204,6 +214,9 @@ class InstructorsController extends Controller
         }
         // dd($info);
 
-        return view('instructors.print')->with('dados', $info);
+        return view('instructors.print')->with([
+            'dados' => $info,
+            'week_day' => $this->week_day
+        ]);
     }
 }
