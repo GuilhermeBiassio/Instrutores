@@ -28,12 +28,14 @@ function AjaxRequest(inputData, inputReturn){
     });
 };
 
-employee.addEventListener('keyup', (event) => {
-    AjaxRequest(employee,employeeAuto);
-});
-driver.addEventListener('keyup', (event) => {
-    AjaxRequest(driver,driverAuto);
-});
+if(document.body.contains(employee) && document.body.contains(driver)){
+    employee.addEventListener('keyup', (event) => {
+        AjaxRequest(employee,employeeAuto);
+    });
+    driver.addEventListener('keyup', (event) => {
+        AjaxRequest(driver,driverAuto);
+    });
+}
 
 deleteBtns.forEach(function(deleteBtn) {
     deleteBtn.addEventListener("click", function(e){

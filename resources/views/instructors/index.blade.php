@@ -13,10 +13,21 @@
             @foreach ($dados as $dado)
                 <div class="accordion-item">
                     <h2 class="accordion-header">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#id{{ $dado->id }}" aria-expanded="false" aria-controls="flush-collapseOne">
-                            <b>{{ date('d/m/Y', strtotime($dado->data_instrucao)) }}</b><span> -
-                                {{ $dado->usuario . ' - ' . $dado->name . ' - ' . $week_day[date('D', strtotime($dado->data_instrucao))] }}</span>
+                        <button class="accordion-button collapsed d-flex justify-content-start" type="button"
+                            data-bs-toggle="collapse" data-bs-target="#id{{ $dado->id }}" aria-expanded="false"
+                            aria-controls="flush-collapseOne">
+                            <div class="d-flex flex-column flex-md-row">
+
+                                <span class="fw-bold">
+                                    {{ date('d/m/Y', strtotime($dado->data_instrucao)) }}
+                                </span>
+                                <span class="ms-md-3 span-status">
+                                    {{ $dado->usuario . ' - ' . $dado->name }}
+                                </span>
+                                <span class="ms-md-3 status">
+                                    {{ $week_day[date('D', strtotime($dado->data_instrucao))] . ' - ' . $dado->status }}
+                                </span>
+                            </div>
                         </button>
                     </h2>
                     <div id="id{{ $dado->id }}" class="accordion-collapse collapse" data-bs-parent="#accordionFlush">
