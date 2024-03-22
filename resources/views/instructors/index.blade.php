@@ -25,7 +25,7 @@
                                     {{ $dado->usuario . ' - ' . $dado->name }}
                                 </span>
                                 <span class="ms-md-3 status">
-                                    {{ $week_day[date('D', strtotime($dado->data_instrucao))] . ' - ' . $dado->status }}
+                                    {{ $week_day[date('D', strtotime($dado->data_instrucao))] . ' - ' . mb_strtoupper($dado->status) }}
                                 </span>
                             </div>
                         </button>

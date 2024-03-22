@@ -23,6 +23,7 @@
             <option value="PRATICANDO">
             <option value="SELEÇÃO">
             <option value="RESERVA">
+            <option value="ATESTADO">
         </datalist>
     </div>
 
